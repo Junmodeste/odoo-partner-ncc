@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Bloc réutilisable : NCC / RCCM d'un partenaire, chaque ligne seulement si renseignée -->
+    <template id="partner_ncc_rccm">
+        <div t-if="partner.ncc" class="o_ncc">NCC: <span t-field="partner.ncc"/></div>
+        <div t-if="partner.rccm" class="o_rccm">RCCM: <span t-field="partner.rccm"/></div>
+    </template>
+
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <!-- Client : la facture peut viser un contact, les identifiants sont sur la société -->
+        <xpath expr="//div[@id='partner_vat_address_not_same_as_shipping']" position="after">
+            <t t-call="res_partner_ncc.partner_ncc_rccm">
+                <t t-set="partner" t-value="o.partner_id.commercial_partner_id"/>
+            </t>
+        </xpath>
+        <xpath expr="//div[@id='partner_vat_address_same_as_shipping']" position="after">
+            <t t-call="res_partner_ncc.partner_ncc_rccm">
+                <t t-set="partner" t-value="o.partner_id.commercial_partner_id"/>
+            </t>
+        </xpath>
+        <xpath expr="//div[@id='partner_vat_no_shipping']" position="after">
+            <t t-call="res_partner_ncc.partner_ncc_rccm">
+                <t t-set="partner" t-value="o.partner_id.commercial_partner_id"/>
+            </t>
+        </xpath>
+        <!-- Ma société : ajoutée à `information_block`, la colonne que la mise en page
+             affiche à gauche de l'adresse client (après l'adresse de livraison éventuelle). -->
+        <xpath expr="//div[hasclass('invoice_main')]" position="before">
+            <t t-set="company_partner" t-value="o.company_id.partner_id"/>
+            <t t-if="company_partner.ncc or company_partner.rccm" t-set="information_block">
+                <t t-out="information_block or ''"/>
+                <div name="company_ncc_rccm" class="mt-3">
+                    <strong t-field="o.company_id.name"/>
+                    <t t-call="res_partner_ncc.partner_ncc_rccm">
+                        <t t-set="partner" t-value="company_partner"/>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
