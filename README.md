@@ -1,6 +1,7 @@
 # Odoo Partner NCC / RCCM (Côte d'Ivoire)
 
 [![Odoo 19](https://img.shields.io/badge/Odoo-19.0-714B67)](https://www.odoo.com)
+[![tests](https://github.com/Junmodeste/odoo-partner-ncc/actions/workflows/tests.yml/badge.svg)](https://github.com/Junmodeste/odoo-partner-ncc/actions/workflows/tests.yml)
 [![License: LGPL-3](https://img.shields.io/badge/License-LGPL--3-blue.svg)](LICENSE)
 
 🇫🇷 [Français](#français) · 🇬🇧 [English](#english)
@@ -42,7 +43,7 @@ Pour adapter un format, modifiez `NCC_PATTERN` ou `RCCM_PATTERN` dans [`models/r
 
 ### Version supportée
 
-Odoo **19.0** uniquement. Tests automatisés exécutés sur Odoo 19 Enterprise (image `odoo:19` 19.0-20261015).
+Odoo **19.0** uniquement. Tests automatisés (GitHub Actions) sur Odoo 19 Community (image `odoo:19`) + PostgreSQL 16, à chaque push.
 
 ### Licence
 
@@ -87,7 +88,7 @@ To change a format, edit `NCC_PATTERN` or `RCCM_PATTERN` in [`models/res_partner
 
 ### Supported version
 
-Odoo **19.0** only. Automated tests run on Odoo 19 Enterprise (`odoo:19` image 19.0-20261015).
+Odoo **19.0** only. Automated tests (GitHub Actions) run on Odoo 19 Community (`odoo:19` image) + PostgreSQL 16 on every push.
 
 ### License
 

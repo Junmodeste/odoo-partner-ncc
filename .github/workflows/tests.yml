@@ -1,0 +1,24 @@
+name: tests
+
+on:
+  push:
+    branches: [main, "*.0"]
+  pull_request:
+
+jobs:
+  odoo-install:
+    # Install the module and run its tests on Odoo 19 Community.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install and test on odoo:19 + postgres:16
+        run: |
+          docker network create odoo
+          docker run -d --name db --network odoo \
+            -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres postgres:16
+          until docker exec db pg_isready -U odoo; do sleep 1; done
+          # The image entrypoint reads the database settings from HOST/USER/PASSWORD.
+          docker run --rm --network odoo -e HOST=db -e USER=odoo -e PASSWORD=odoo \
+            -v "$PWD:/mnt/extra-addons:ro" odoo:19 \
+            odoo -d test -i res_partner_ncc --test-enable --test-tags=/res_partner_ncc --stop-after-init 2>&1 | tee odoo.log
+          grep -E "0 failed, 0 error\(s\) of [1-9][0-9]* tests" odoo.log
