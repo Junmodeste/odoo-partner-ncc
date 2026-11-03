@@ -1,6 +1,6 @@
 import re
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 from odoo.exceptions import ValidationError
 
 # Formats volontairement souples, à confirmer avec la DGI / le greffe (voir README).
@@ -23,11 +23,13 @@ class ResPartner(models.Model):
     ncc = fields.Char(string="NCC", index="btree_not_null", copy=False, help="Taxpayer account number (Numéro de compte contribuable, DGI).")
     rccm = fields.Char(string="RCCM", copy=False, help="Trade and personal property credit register (RCCM).")
 
-    # Un même NCC une seule fois par société Odoo (les contacts partagés comptent comme société 0).
-    _ncc_company_uniq = models.UniqueIndex(
-        "(ncc, COALESCE(company_id, 0)) WHERE ncc IS NOT NULL",
-        "This NCC is already used by another contact.",
-    )
+    def init(self):
+        super().init()
+        # Un même NCC une seule fois par société Odoo (les contacts partagés comptent comme société 0).
+        # Index unique plutôt que _sql_constraints (pas d'expression COALESCE) ; un NCC vide (NULL) n'entre jamais en conflit.
+        tools.create_unique_index(
+            self.env.cr, "res_partner_ncc_company_uniq", self._table, ["ncc", "COALESCE(company_id, 0)"]
+        )
 
     @api.model_create_multi
     def create(self, vals_list):
