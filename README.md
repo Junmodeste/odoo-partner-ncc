@@ -43,7 +43,7 @@ Pour adapter un format, modifiez `NCC_PATTERN` ou `RCCM_PATTERN` dans [`models/r
 
 ### Version supportée
 
-Odoo **19.0** uniquement. Tests automatisés (GitHub Actions) sur Odoo 19 Community (image `odoo:19`) + PostgreSQL 16, à chaque push.
+Une branche par version d'Odoo : [`19.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/19.0) (cette branche), [`18.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/18.0). Tests automatisés (GitHub Actions) sur Odoo 19 Community (image `odoo:19`) + PostgreSQL 16, à chaque push.
 
 ### Licence
 
@@ -88,7 +88,7 @@ To change a format, edit `NCC_PATTERN` or `RCCM_PATTERN` in [`models/res_partner
 
 ### Supported version
 
-Odoo **19.0** only. Automated tests (GitHub Actions) run on Odoo 19 Community (`odoo:19` image) + PostgreSQL 16 on every push.
+One branch per Odoo version: [`19.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/19.0) (this branch), [`18.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/18.0). Automated tests (GitHub Actions) run on Odoo 19 Community (`odoo:19` image) + PostgreSQL 16 on every push.
 
 ### License
 
