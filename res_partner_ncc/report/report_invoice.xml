@@ -25,7 +25,7 @@
         </xpath>
         <!-- Ma société : ajoutée à `information_block`, la colonne que la mise en page
              affiche à gauche de l'adresse client (après l'adresse de livraison éventuelle). -->
-        <xpath expr="//div[hasclass('invoice_main')]" position="before">
+        <xpath expr="//div[hasclass('mt-5')][hasclass('clearfix')]" position="before">
             <t t-set="company_partner" t-value="o.company_id.partner_id"/>
             <t t-if="company_partner.ncc or company_partner.rccm" t-set="information_block">
                 <t t-out="information_block or ''"/>

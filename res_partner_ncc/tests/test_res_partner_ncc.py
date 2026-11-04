@@ -34,7 +34,7 @@ class TestResPartnerNcc(AccountTestInvoicingCommon):
         with mute_logger("odoo.sql_db"), self.assertRaises(IntegrityError), self.cr.savepoint():
             self.Partner.create({"name": "Doublon", "is_company": True, "ncc": "1234567 a"})
         # Le même NCC reste possible dans une autre société Odoo.
-        other_company = self.setup_other_company()["company"]
+        other_company = self.company_data_2["company"]
         self.Partner.create({"name": "Filiale", "ncc": "1234567A", "company_id": other_company.id})
 
     def _invoice_html(self, partner):

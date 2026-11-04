@@ -1,6 +1,6 @@
 # Odoo Partner NCC / RCCM (Côte d'Ivoire)
 
-[![Odoo 18](https://img.shields.io/badge/Odoo-18.0-714B67)](https://www.odoo.com)
+[![Odoo 17](https://img.shields.io/badge/Odoo-17.0-714B67)](https://www.odoo.com)
 [![tests](https://github.com/Junmodeste/odoo-partner-ncc/actions/workflows/tests.yml/badge.svg)](https://github.com/Junmodeste/odoo-partner-ncc/actions/workflows/tests.yml)
 [![License: LGPL-3](https://img.shields.io/badge/License-LGPL--3-blue.svg)](LICENSE)
 
@@ -33,7 +33,7 @@ Pour adapter un format, modifiez `NCC_PATTERN` ou `RCCM_PATTERN` dans [`models/r
 
 ### Prérequis
 
-- Odoo 18 (Community ou Enterprise), module `account`
+- Odoo 17 (Community ou Enterprise), module `account`
 
 ### Installation
 
@@ -43,7 +43,7 @@ Pour adapter un format, modifiez `NCC_PATTERN` ou `RCCM_PATTERN` dans [`models/r
 
 ### Version supportée
 
-Odoo **18.0** uniquement. Tests automatisés (GitHub Actions) sur Odoo 18 Community (image `odoo:18`) + PostgreSQL 16, à chaque push.
+Odoo **17.0** uniquement. Tests automatisés (GitHub Actions) sur Odoo 17 Community (image `odoo:17`) + PostgreSQL 16, à chaque push.
 
 ### Licence
 
@@ -78,7 +78,7 @@ To change a format, edit `NCC_PATTERN` or `RCCM_PATTERN` in [`models/res_partner
 
 ### Requirements
 
-- Odoo 18 (Community or Enterprise), `account` module
+- Odoo 17 (Community or Enterprise), `account` module
 
 ### Installation
 
@@ -88,7 +88,7 @@ To change a format, edit `NCC_PATTERN` or `RCCM_PATTERN` in [`models/res_partner
 
 ### Supported version
 
-Odoo **18.0** only. Automated tests (GitHub Actions) run on Odoo 18 Community (`odoo:18` image) + PostgreSQL 16 on every push.
+Odoo **17.0** only. Automated tests (GitHub Actions) run on Odoo 17 Community (`odoo:17` image) + PostgreSQL 16 on every push.
 
 ### License
 

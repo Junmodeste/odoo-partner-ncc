@@ -1,6 +1,6 @@
 import re
 
-from odoo import api, fields, models, tools
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 
 # Formats volontairement souples, à confirmer avec la DGI / le greffe (voir README).
@@ -51,12 +51,12 @@ class ResPartner(models.Model):
     def _check_ncc_rccm_format(self):
         for partner in self:
             if partner.ncc and not NCC_PATTERN.match(partner.ncc):
-                raise ValidationError(self.env._(
+                raise ValidationError(_(
                     "Invalid NCC “%(ncc)s”: expected 7 to 9 digits, optionally followed by a letter (e.g. 1234567A).",
                     ncc=partner.ncc,
                 ))
             if partner.rccm and not RCCM_PATTERN.match(partner.rccm):
-                raise ValidationError(self.env._(
+                raise ValidationError(_(
                     "Invalid RCCM “%(rccm)s”: expected to start with CI (e.g. CI-ABJ-2017-B-12345).",
                     rccm=partner.rccm,
                 ))
