@@ -1,6 +1,7 @@
 from psycopg2 import IntegrityError
 
 from odoo.exceptions import ValidationError
+from odoo.service.model import _as_validation_error
 from odoo.tests import tagged
 from odoo.tools import mute_logger
 
@@ -31,8 +32,11 @@ class TestResPartnerNcc(AccountTestInvoicingCommon):
 
     def test_ncc_unique_per_company(self):
         self.customer.ncc = "1234567A"
-        with mute_logger("odoo.sql_db"), self.assertRaises(IntegrityError), self.cr.savepoint():
+        with mute_logger("odoo.sql_db"), self.assertRaises(IntegrityError) as cm, self.cr.savepoint():
             self.Partner.create({"name": "Doublon", "is_company": True, "ncc": "1234567 a"})
+        # Message clair pour l'utilisateur, pas l'erreur SQL brute.
+        error = _as_validation_error(self.env, cm.exception)
+        self.assertIn("This NCC is already used by another contact.", str(error))
         # Le même NCC reste possible dans une autre société Odoo.
         other_company = self.setup_other_company()["company"]
         self.Partner.create({"name": "Filiale", "ncc": "1234567A", "company_id": other_company.id})
