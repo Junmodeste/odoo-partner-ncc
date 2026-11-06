@@ -62,3 +62,12 @@ class TestResPartnerNcc(AccountTestInvoicingCommon):
         self.assertIn('name="company_ncc_rccm"', html)
         self.assertIn("1111111C", html)
         self.assertIn("CI-ABJ-2020-B-1", html)
+
+    def test_company_fields(self):
+        # Saisis depuis la fiche société, stockés et normalisés sur son partenaire.
+        company = self.env.company
+        company.write({"ncc": " 2222222 d ", "rccm": "ci-abj-2021-b-7"})
+        self.assertEqual(company.partner_id.ncc, "2222222D")
+        self.assertEqual(company.rccm, "CI-ABJ-2021-B-7")
+        with self.assertRaises(ValidationError):
+            company.ncc = "ABC"
