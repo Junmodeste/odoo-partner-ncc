@@ -18,7 +18,7 @@ Le NCC et le RCCM du client et de votre société s'impriment sur la facture PDF
 - Champs visibles uniquement sur les sociétés, et cherchables dans la recherche des contacts.
 - Saisie normalisée : majuscules, espaces supprimés (` 1234567 a ` devient `1234567A`).
 - Un NCC ne peut être utilisé qu'une fois par société Odoo (les contacts partagés entre sociétés comptent comme un même groupe).
-- Facture : les identifiants du client sont lus sur la société du contact facturé ; ceux de votre société se saisissent sur sa fiche dans *Contacts*.
+- Facture : les identifiants du client sont lus sur la société du contact facturé ; ceux de votre société se saisissent dans *Paramètres > Sociétés* (ou sur sa fiche dans *Contacts*, c'est le même enregistrement).
 
 ### Formats retenus (à confirmer)
 
@@ -63,7 +63,7 @@ The customer's and your company's NCC and RCCM are printed on the PDF invoice, o
 - Fields shown on companies only, and searchable in the contacts search view.
 - Input normalized: upper case, spaces removed (` 1234567 a ` becomes `1234567A`).
 - An NCC can be used only once per Odoo company (contacts shared between companies count as one group).
-- Invoice: customer identifiers are read on the commercial partner; your company's identifiers are set on its contact record.
+- Invoice: customer identifiers are read on the commercial partner; your company's identifiers are set in *Settings > Companies* (or on its contact record, which holds the same values).
 
 ### Formats (to be confirmed)
 

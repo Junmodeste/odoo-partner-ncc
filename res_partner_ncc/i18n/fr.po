@@ -41,6 +41,7 @@ msgstr ""
 "ABJ-2017-B-12345)."
 
 #. module: res_partner_ncc
+#: model:ir.model.fields,field_description:res_partner_ncc.field_res_company__ncc
 #: model:ir.model.fields,field_description:res_partner_ncc.field_res_partner__ncc
 #: model:ir.model.fields,field_description:res_partner_ncc.field_res_users__ncc
 msgid "NCC"
@@ -52,12 +53,14 @@ msgid "NCC:"
 msgstr "NCC :"
 
 #. module: res_partner_ncc
+#: model:ir.model.fields,help:res_partner_ncc.field_res_company__ncc
 #: model:ir.model.fields,help:res_partner_ncc.field_res_partner__ncc
 #: model:ir.model.fields,help:res_partner_ncc.field_res_users__ncc
 msgid "Taxpayer account number (Numéro de compte contribuable, DGI)."
 msgstr "Numéro de compte contribuable (DGI)."
 
 #. module: res_partner_ncc
+#: model:ir.model.fields,field_description:res_partner_ncc.field_res_company__rccm
 #: model:ir.model.fields,field_description:res_partner_ncc.field_res_partner__rccm
 #: model:ir.model.fields,field_description:res_partner_ncc.field_res_users__rccm
 msgid "RCCM"
@@ -69,6 +72,7 @@ msgid "RCCM:"
 msgstr "RCCM :"
 
 #. module: res_partner_ncc
+#: model:ir.model.fields,help:res_partner_ncc.field_res_company__rccm
 #: model:ir.model.fields,help:res_partner_ncc.field_res_partner__rccm
 #: model:ir.model.fields,help:res_partner_ncc.field_res_users__rccm
 msgid "Trade and personal property credit register (RCCM)."
@@ -80,11 +84,13 @@ msgid "This NCC is already used by another contact."
 msgstr "Ce NCC est déjà utilisé par un autre contact."
 
 #. module: res_partner_ncc
+#: model_terms:ir.ui.view,arch_db:res_partner_ncc.view_company_form_ncc
 #: model_terms:ir.ui.view,arch_db:res_partner_ncc.view_partner_form_ncc
 msgid "e.g. 1234567A"
 msgstr "ex. 1234567A"
 
 #. module: res_partner_ncc
+#: model_terms:ir.ui.view,arch_db:res_partner_ncc.view_company_form_ncc
 #: model_terms:ir.ui.view,arch_db:res_partner_ncc.view_partner_form_ncc
 msgid "e.g. CI-ABJ-2017-B-12345"
 msgstr "ex. CI-ABJ-2017-B-12345"
