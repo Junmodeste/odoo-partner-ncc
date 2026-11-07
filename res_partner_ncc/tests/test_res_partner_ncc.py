@@ -41,10 +41,34 @@ class TestResPartnerNcc(AccountTestInvoicingCommon):
         other_company = self.setup_other_company()["company"]
         self.Partner.create({"name": "Filiale", "ncc": "1234567A", "company_id": other_company.id})
 
-    def _invoice_html(self, partner):
-        invoice = self._create_invoice_one_line(price_unit=1000, partner_id=partner.id, post=True)
+    def _invoice_html(self, partner, **invoice_args):
+        invoice = self._create_invoice_one_line(
+            price_unit=1000, partner_id=partner.id, post=True, **invoice_args
+        )
         html, _type = self.env["ir.actions.report"]._render_qweb_html("account.account_invoices", invoice.ids)
         return html.decode()
+
+    def test_invoice_shipping_address(self):
+        # Adresse de livraison différente : la mise en page passe par la branche
+        # `address_not_same_as_shipping` et remplit `information_block`.
+        self.env.user.groups_id |= self.env.ref("account.group_delivery_invoice_address")
+        self.customer.write({"ncc": "7654321B", "rccm": "CI-ABJ-2019-B-42"})
+        delivery = self.Partner.create({
+            "name": "Entrepôt Yopougon",
+            "type": "delivery",
+            "parent_id": self.customer.id,
+        })
+        self.env.company.partner_id.write({"ncc": "1111111C"})
+        html = self._invoice_html(self.customer, partner_shipping_id=delivery.id)
+        self.assertIn('name="address_not_same_as_shipping"', html)
+        self.assertIn('name="shipping_address_block"', html)
+        # Identifiants du client affichés une seule fois, sans dépendre de la TVA.
+        self.assertEqual(html.count("7654321B"), 1)
+        self.assertEqual(html.count("CI-ABJ-2019-B-42"), 1)
+        # Le bloc de ma société s'ajoute à l'adresse de livraison sans la remplacer.
+        self.assertIn('name="company_ncc_rccm"', html)
+        self.assertIn("1111111C", html)
+        self.assertLess(html.index('name="shipping_address_block"'), html.index('name="company_ncc_rccm"'))
 
     def test_invoice_conditional_display(self):
         # Rien de renseigné : aucune ligne NCC / RCCM.
