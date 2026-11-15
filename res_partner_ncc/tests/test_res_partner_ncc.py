@@ -56,7 +56,8 @@ class TestResPartnerNcc(AccountTestInvoicingCommon):
         })
         self.env.company.partner_id.write({"ncc": "1111111C"})
         html = self._invoice_html(self.customer, partner_shipping_id=delivery.id)
-        self.assertIn('name="address_not_same_as_shipping"', html)
+        # Odoo 20 : `address_not_same_as_shipping` est un <t> (non rendu) ; on vérifie sa div.
+        self.assertIn('id="partner_vat_address_not_same_as_shipping"', html)
         self.assertIn('name="shipping_address_block"', html)
         # Identifiants du client affichés une seule fois, sans dépendre de la TVA.
         self.assertEqual(html.count("7654321B"), 1)

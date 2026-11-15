@@ -1,6 +1,6 @@
 # Odoo Partner NCC / RCCM (Côte d'Ivoire)
 
-[![Odoo 19](https://img.shields.io/badge/Odoo-19.0-714B67)](https://www.odoo.com)
+[![Odoo 20](https://img.shields.io/badge/Odoo-20.0-714B67)](https://www.odoo.com)
 [![tests](https://github.com/Junmodeste/odoo-partner-ncc/actions/workflows/tests.yml/badge.svg)](https://github.com/Junmodeste/odoo-partner-ncc/actions/workflows/tests.yml)
 [![License: LGPL-3](https://img.shields.io/badge/License-LGPL--3-blue.svg)](LICENSE)
 
@@ -33,7 +33,7 @@ Pour adapter un format, modifiez `NCC_PATTERN` ou `RCCM_PATTERN` dans [`models/r
 
 ### Prérequis
 
-- Odoo 19 (Community ou Enterprise), module `account`
+- Odoo 20 (Community ou Enterprise), module `account`
 
 ### Installation
 
@@ -43,7 +43,7 @@ Pour adapter un format, modifiez `NCC_PATTERN` ou `RCCM_PATTERN` dans [`models/r
 
 ### Version supportée
 
-Une branche par version d'Odoo : [`19.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/19.0) (cette branche), [`18.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/18.0), [`17.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/17.0). Tests automatisés (GitHub Actions) sur Odoo 19 Community (image `odoo:19`) + PostgreSQL 16, à chaque push.
+Une branche par version d'Odoo : [`20.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/20.0) (cette branche), [`19.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/19.0), [`18.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/18.0), [`17.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/17.0). Tests automatisés (GitHub Actions) sur Odoo 20 Community (image `odoo:20`) + PostgreSQL 16, à chaque push.
 
 ### Licence
 
@@ -78,7 +78,7 @@ To change a format, edit `NCC_PATTERN` or `RCCM_PATTERN` in [`models/res_partner
 
 ### Requirements
 
-- Odoo 19 (Community or Enterprise), `account` module
+- Odoo 20 (Community or Enterprise), `account` module
 
 ### Installation
 
@@ -88,7 +88,7 @@ To change a format, edit `NCC_PATTERN` or `RCCM_PATTERN` in [`models/res_partner
 
 ### Supported version
 
-One branch per Odoo version: [`19.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/19.0) (this branch), [`18.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/18.0), [`17.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/17.0). Automated tests (GitHub Actions) run on Odoo 19 Community (`odoo:19` image) + PostgreSQL 16 on every push.
+One branch per Odoo version: [`20.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/20.0) (this branch), [`19.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/19.0), [`18.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/18.0), [`17.0`](https://github.com/Junmodeste/odoo-partner-ncc/tree/17.0). Automated tests (GitHub Actions) run on Odoo 20 Community (`odoo:20` image) + PostgreSQL 16 on every push.
 
 ### License
 
