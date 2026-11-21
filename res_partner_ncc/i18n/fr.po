@@ -16,9 +16,26 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: res_partner_ncc
+#: model:ir.model,name:res_partner_ncc.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: res_partner_ncc
+#: model:ir.model,name:res_partner_ncc.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: res_partner_ncc
+#: model:ir.model.fields,field_description:res_partner_ncc.field_res_company__display_name
 #: model:ir.model.fields,field_description:res_partner_ncc.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Nom d'affichage"
+
+#. module: res_partner_ncc
+#: model:ir.model.fields,field_description:res_partner_ncc.field_res_company__id
+#: model:ir.model.fields,field_description:res_partner_ncc.field_res_partner__id
+msgid "ID"
+msgstr "ID"
 
 #. module: res_partner_ncc
 #. odoo-python
