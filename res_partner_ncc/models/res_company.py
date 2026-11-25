@@ -4,7 +4,7 @@ from odoo import api, fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    # Stockés sur le partenaire de la société : format et unicité s'appliquent.
+    # Stockés sur le partenaire de la société : validation et unicité s'appliquent.
     ncc = fields.Char(related="partner_id.ncc", readonly=False)
     rccm = fields.Char(related="partner_id.rccm", readonly=False)
 

@@ -38,26 +38,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: res_partner_ncc
-#. odoo-python
-#: code:addons/res_partner_ncc/models/res_partner.py:0
-msgid ""
-"Invalid NCC “%(ncc)s”: expected 7 to 9 digits, optionally followed by a "
-"letter (e.g. 1234567A)."
-msgstr ""
-"NCC « %(ncc)s » invalide : 7 à 9 chiffres attendus, éventuellement suivis "
-"d'une lettre (ex. 1234567A)."
-
-#. module: res_partner_ncc
-#. odoo-python
-#: code:addons/res_partner_ncc/models/res_partner.py:0
-msgid ""
-"Invalid RCCM “%(rccm)s”: expected to start with CI (e.g. CI-"
-"ABJ-2017-B-12345)."
-msgstr ""
-"RCCM « %(rccm)s » invalide : il doit commencer par CI (ex. CI-"
-"ABJ-2017-B-12345)."
-
-#. module: res_partner_ncc
 #: model:ir.model.fields,field_description:res_partner_ncc.field_res_company__ncc
 #: model:ir.model.fields,field_description:res_partner_ncc.field_res_partner__ncc
 #: model:ir.model.fields,field_description:res_partner_ncc.field_res_users__ncc
@@ -96,18 +76,16 @@ msgid "Trade and personal property credit register (RCCM)."
 msgstr "Registre du commerce et du crédit mobilier (RCCM)."
 
 #. module: res_partner_ncc
-#: model:ir.model.constraint,message:res_partner_ncc.constraint_res_partner_ncc_company_uniq
+#: code:addons/res_partner_ncc/models/res_partner.py:0
 msgid "This NCC is already used by another contact."
 msgstr "Ce NCC est déjà utilisé par un autre contact."
 
 #. module: res_partner_ncc
 #: model_terms:ir.ui.view,arch_db:res_partner_ncc.view_company_form_ncc
-#: model_terms:ir.ui.view,arch_db:res_partner_ncc.view_partner_form_ncc
 msgid "e.g. 1234567A"
 msgstr "ex. 1234567A"
 
 #. module: res_partner_ncc
 #: model_terms:ir.ui.view,arch_db:res_partner_ncc.view_company_form_ncc
-#: model_terms:ir.ui.view,arch_db:res_partner_ncc.view_partner_form_ncc
 msgid "e.g. CI-ABJ-2017-B-12345"
 msgstr "ex. CI-ABJ-2017-B-12345"
