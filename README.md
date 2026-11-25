@@ -15,10 +15,11 @@ Le NCC et le RCCM du client et de votre société s'impriment sur la facture PDF
 
 ### Fonctionnement
 
-- Champs visibles uniquement sur les sociétés, et cherchables dans la recherche des contacts.
-- Saisie normalisée : majuscules, espaces supprimés (` 1234567 a ` devient `1234567A`).
-- Un NCC ne peut être utilisé qu'une fois par société Odoo (les contacts partagés entre sociétés comptent comme un même groupe).
+- Odoo 20 : NCC et RCCM sont des identifiants natifs (`additional_identifiers`, clés `CI_NCC` et `CI_RCCM`). Ils se saisissent dans le widget d'identifiants de la fiche société (pays : Côte d'Ivoire) ou dans *Paramètres > Sociétés*, et se cherchent dans la recherche des contacts. Les champs Python `ncc` et `rccm` restent disponibles (lecture, écriture, recherche).
+- Saisie normalisée : majuscules, espaces supprimés (` 1234567 a ` devient `1234567A`) et format contrôlé par la validation native d'Odoo.
+- Un NCC ne peut être utilisé qu'une fois par société Odoo (les contacts partagés entre sociétés comptent comme un même groupe) ; les contacts d'une même société partagent ses identifiants.
 - Facture : les identifiants du client sont lus sur la société du contact facturé ; ceux de votre société se saisissent dans *Paramètres > Sociétés* (ou sur sa fiche dans *Contacts*, c'est le même enregistrement).
+- Mise à jour depuis `20.0.1.x` : migration automatique des colonnes `ncc` / `rccm` vers `additional_identifiers`. Un doublon de NCC n'est plus une erreur SQL mais une `ValidationError`.
 
 ### Formats retenus (à confirmer)
 
@@ -60,10 +61,11 @@ The customer's and your company's NCC and RCCM are printed on the PDF invoice, o
 
 ### Behavior
 
-- Fields shown on companies only, and searchable in the contacts search view.
-- Input normalized: upper case, spaces removed (` 1234567 a ` becomes `1234567A`).
-- An NCC can be used only once per Odoo company (contacts shared between companies count as one group).
+- Odoo 20: NCC and RCCM are native identifiers (`additional_identifiers`, keys `CI_NCC` and `CI_RCCM`). Enter them in the identifiers widget of the company contact (country: Côte d'Ivoire) or in *Settings > Companies*; both are searchable in the contacts search view. The Python fields `ncc` and `rccm` remain available (read, write, search).
+- Input normalized: upper case, spaces removed (` 1234567 a ` becomes `1234567A`), format checked by Odoo's native identifier validation.
+- An NCC can be used only once per Odoo company (contacts shared between companies count as one group); contacts of a company share its identifiers.
 - Invoice: customer identifiers are read on the commercial partner; your company's identifiers are set in *Settings > Companies* (or on its contact record, which holds the same values).
+- Upgrading from `20.0.1.x`: the `ncc` / `rccm` columns are migrated automatically to `additional_identifiers`. A duplicate NCC is now a `ValidationError`, not a raw SQL error.
 
 ### Formats (to be confirmed)
 

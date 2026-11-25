@@ -1,8 +1,5 @@
-from psycopg2 import IntegrityError
-
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
-from odoo.tools import mute_logger
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -31,11 +28,37 @@ class TestResPartnerNcc(AccountTestInvoicingCommon):
 
     def test_ncc_unique_per_company(self):
         self.customer.ncc = "1234567A"
-        with mute_logger("odoo.sql_db"), self.assertRaises(IntegrityError), self.cr.savepoint():
+        with self.assertRaises(ValidationError), self.cr.savepoint():
             self.Partner.create({"name": "Doublon", "is_company": True, "ncc": "1234567 a"})
         # Le même NCC reste possible dans une autre société Odoo.
         other_company = self.setup_other_company()["company"]
         self.Partner.create({"name": "Filiale", "ncc": "1234567A", "company_id": other_company.id})
+
+    def test_stored_in_additional_identifiers(self):
+        # NCC et RCCM vivent dans le JSON natif d'Odoo 20 et dans le widget d'identifiants.
+        self.customer.write({"ncc": "1234567a", "rccm": "ci-abj-2017-b-12345"})
+        self.assertEqual(self.customer.additional_identifiers["CI_NCC"], "1234567A")
+        self.assertEqual(self.customer.additional_identifiers["CI_RCCM"], "CI-ABJ-2017-B-12345")
+        self.customer.country_id = self.env.ref("base.ci")
+        self.assertIn("CI_NCC", self.customer.available_additional_identifiers_metadata)
+        # Écriture directe dans le JSON : même validation.
+        with self.assertRaises(ValidationError):
+            self.customer.additional_identifiers = {"CI_NCC": "ABC"}
+        # Vider le champ retire la clé.
+        self.customer.ncc = False
+        self.assertNotIn("CI_NCC", self.customer.additional_identifiers)
+        self.assertFalse(self.customer.ncc)
+
+    def test_search(self):
+        self.customer.write({"ncc": "1234567A", "rccm": "CI-ABJ-2017-B-12345"})
+        other = self.Partner.create({"name": "Sans NCC", "is_company": True})
+        self.assertEqual(self.Partner.search([("ncc", "=", "1234567 a")]), self.customer)
+        self.assertEqual(self.Partner.search([("ncc", "ilike", "34567")]), self.customer)
+        self.assertEqual(self.Partner.search([("rccm", "ilike", "abj")]), self.customer)
+        self.assertIn(other, self.Partner.search([("ncc", "=", False)]))
+        self.assertNotIn(self.customer, self.Partner.search([("ncc", "=", False)]))
+        self.assertIn(self.customer, self.Partner.search([("ncc", "!=", False)]))
+        self.assertNotIn(self.customer, self.Partner.search([("ncc", "not ilike", "4567")]))
 
     def _invoice_html(self, partner, **invoice_args):
         invoice = self._create_invoice_one_line(
